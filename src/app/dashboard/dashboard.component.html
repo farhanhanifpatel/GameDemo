@@ -1,0 +1,189 @@
+<app-header></app-header>
+<div class="container-fluid">
+  <div class="row ml-5">
+    <div class="col-lg-2 p-3">
+      <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#users">
+        TOP USER
+      </button>
+    </div>
+    <div class="col-lg-2 p-3">
+      <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#invite">
+        INVITE USER
+      </button>
+    </div>
+    <div class="col-lg-2 p-3">
+      <button type="button" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#product">
+        MY PRODUCT
+      </button>
+    </div>
+  </div>
+  <div class="modal fade" id="invite" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title " id="exampleModalLabel">INVITATION</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive w-100 col-lg-8 ">
+            <h5 class="mt-5">INVITE FRIEND</h5>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Email</th>
+                  <th scope="col">Bonus</th>
+                  <th>INVITE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let sub of userss">
+                  <td scope="row">{{sub.email}}</td>
+                  <td scope="row" style="background-color: green;">{{sub.bonus}}</td>
+                  <td><button class="btn btn-primary" (click)="inviTation(sub.id)">Invite</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="users" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title " id="exampleModalLabel">USER DETAILS</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive w-100 col-lg-8 ">
+            <h3 class="mt-5">USER DETAILS</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Profile</th>
+                  <th scope="col">Email</th>
+                  <th>Bonus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of users">
+                  <td scope="row"><img src="{{i.profile_pitucher}}"
+                      onerror="this.src='https://traditionalyoga.s3.us-west-2.amazonaws.com/wp-content/uploads/2020/08/10035151/pp-size.jpeg'"
+                      alt="Card image cap" style="height: 5%; width: 50%;"></td>
+                  <td scope="row">{{i.email}}</td>
+                  <td scope="row">{{i.bonus}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="product" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title " id="exampleModalLabel">MY PRODUCT</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="table-responsive w-100 col-lg-8 ">
+            <h3 class="mt-5">PRODUCT</h3>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <!-- <th scope="col">Description</th> -->
+                  <th scope="col">Price</th>
+                  <th>Quanity</th>
+                  <!-- <th>#</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let i of products">
+
+                  <td scope="row">{{i.product_name}}</td>
+                  <!-- <td scope="row">{{i.description}}</td> -->
+                  <td scope="row">{{i.price}}</td>
+                  <td scope="row">{{i.quantiy}}</td>
+                  <!-- <td><button class="btn btn-primary">SELL</button></td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-4 ">
+        <div class="row mt-5">
+          <h1 class="">CATEGOREY</h1>
+          <div class="col-4">
+            <div class="card" *ngFor="let item of items">
+              <div class="card-body">
+                <h5 class="card-title">{{ item.name }}</h5>
+                <a (click)="getSubCategory(item.name)" class="btn btn-primary">Show</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-8">
+        <div class="row">
+          <div class="col-3 " *ngFor="let item of list">
+            <div class="card ">
+              <img class="card-img-top " src="{{item.image}}"
+                onerror="this.src='https://media.istockphoto.com/id/1322277517/photo/wild-grass-in-the-mountains-at-sunset.jpg?s=612x612&w=0&k=20&c=6mItwwFFGqKNKEAzv0mv6TaxhLN3zSE43bWmFN--J5w='"
+                alt="Card image cap">
+              <div class="card-body ">
+                <div class="card-title">
+                  <h5>{{item.id}} : {{item.item_name}}</h5>
+                </div>
+                <div class="card-subtitile">
+                  <h4>Price: {{item.item_price}}</h4>
+                </div>
+                <div class="card-text">Stock : {{item.total_stock}}</div>
+                <td><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                    (click)="productId = (item.id)">BUY</button></td>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <h3 class="mt-5">SUB CATEGORY</h3>
+    <div class="col-2">
+      <div class="card" *ngFor="let sub of subCategory;index as i">
+        <div class="card-body" style="background-color: antiquewhite;">
+          <td><a (click)="total_items(sub.category_id)">
+          <td style="cursor: pointer;">{{sub.NAME}}</td></a></td>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">BUY PRODUCT</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="recipient-name" class="col-form-label">QUANTITY:</label>
+            <input type="text" class="form-control" id="recipient-name" (change)="quantityChange($event)">
+          </div>
+          <input type="hidden" [ngModel]="productId">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="productBuy(productId,quantity)">BUY</button>
+        </div>
+      </div>
+    </div>
+  </div>
